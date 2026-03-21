@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
 import { DOMAIN_PROJECTS } from "../lib/domainProjects";
