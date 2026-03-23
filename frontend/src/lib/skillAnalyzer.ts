@@ -247,37 +247,7 @@ function detectDomain(jobSkills: Set<string>): string {
   }
 }
 
-// DevOps override
-if (categoryScore["DevOps"] >= 2) {
-  return "devops engineer";
-}
-
-// ⭐ Python-specific role (ADD THIS)
-// Only if Python is dominant
-if (
-  jobSkills.has("python") &&
-  categoryScore["Backend"] >= 2 &&
-  !categoryScore["Programming"]
-) {
-  return "python developer";
-}
-
-// Full Stack detection
-if (categoryScore["Frontend"] >= 2 && categoryScore["Backend"] >= 2) {
-  return "full stack developer";
-}
-
-// Backend
-if (categoryScore["Backend"] >= 2 && categoryScore["Frontend"] < 2) {
-  return "backend developer";
-}
-
-// Programming fallback (FIXED)
-if (categoryScore["Programming"] >= 2 && !categoryScore["Frontend"]) {
-  return "software developer";
-}
-
-// ✅ ML-specific override (HIGH PRIORITY)
+// ✅ ML override (TOP priority)
 if (
   jobSkills.has("machine learning") ||
   jobSkills.has("tensorflow")
@@ -285,12 +255,43 @@ if (
   return "machine learning engineer";
 }
 
-// DATA ANALYST detection (HIGH PRIORITY)
+// ✅ Data Analyst
 if (
   categoryScore["Business Intelligence"] >= 1 &&
   jobSkills.has("sql")
 ) {
   return "data analyst";
+}
+
+// ✅ DevOps
+if (categoryScore["DevOps"] >= 2) {
+  return "devops engineer";
+}
+
+// ✅ Full Stack (IMPORTANT FIX)
+if (
+  categoryScore["Frontend"] >= 1 &&
+  categoryScore["Backend"] >= 1
+) {
+  return "full stack developer";
+}
+
+// ✅ Software Developer (GENERAL ROLE FIX)
+if (categoryScore["Programming"] >= 2) {
+  return "software developer";
+}
+
+// ✅ Python-specific
+if (
+  jobSkills.has("python") &&
+  categoryScore["Backend"] >= 2
+) {
+  return "python developer";
+}
+
+// ✅ Backend (MOVE DOWN)
+if (categoryScore["Backend"] >= 2) {
+  return "backend developer";
 }
 
 
