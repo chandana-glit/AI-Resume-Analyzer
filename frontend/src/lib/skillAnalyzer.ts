@@ -294,6 +294,16 @@ if (categoryScore["Backend"] >= 2) {
   return "backend developer";
 }
 
+  const text = Array.from(jobSkills).join(" ").toLowerCase();
+
+// ✅ Job title priority (VERY IMPORTANT)
+if (text.includes("software developer") || text.includes("software engineer")) {
+  return "software developer";
+}
+
+if (text.includes("full stack")) {
+  return "full stack developer";
+}
 
   switch (bestCategory) {
 
