@@ -221,7 +221,17 @@ function extractSkills(text: string): Set<string> {
 // SMART DOMAIN DETECTION
 // ================================
 
-function detectDomain(jobSkills: Set<string>): string {
+function detectDomain(jobSkills: Set<string>, jobText: string): string {
+
+  const text = jobText.toLowerCase();
+
+  if (text.includes("software developer") || text.includes("software engineer")) {
+    return "software developer";
+  }
+
+  if (text.includes("full stack")) {
+    return "full stack developer";
+  }
 
   const categoryScore: Record<string, number> = {};
 
@@ -294,17 +304,6 @@ if (categoryScore["Backend"] >= 2) {
   return "backend developer";
 }
 
-  const text = Array.from(jobSkills).join(" ").toLowerCase();
-
-// ✅ Job title priority (VERY IMPORTANT)
-if (text.includes("software developer") || text.includes("software engineer")) {
-  return "software developer";
-}
-
-if (text.includes("full stack")) {
-  return "full stack developer";
-}
-
   switch (bestCategory) {
 
     case "AI":
@@ -365,7 +364,7 @@ if (text.includes("full stack")) {
       return "software developer";
 
     default:
-      return "Doamin not detected";
+      return "Domain not detected";
   }
 }
 
@@ -407,7 +406,7 @@ export function analyzeSkills(
       ? Math.round((matched.length / jobSkills.size) * 100)
       : 0;
 
-  const domain = detectDomain(jobSkills);
+  const domain = detectDomain(jobSkills, jobDescription);
 
   return {
     domain,
