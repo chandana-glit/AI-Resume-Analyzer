@@ -80,6 +80,25 @@ export const DOMAIN_PROJECTS: Record<
     "Develop an enterprise BI reporting system using SQL and Tableau."
 },
 
+  "data analyst": {
+  miniProject:
+    "Analyze dataset using Excel/SQL and create visualizations.",
+  majorProject:
+    "Build a complete analytics dashboard using Power BI or Tableau."
+},
+  "full stack developer": {
+  miniProject:
+    "Build a MERN stack application with authentication and CRUD features.",
+  majorProject:
+    "Develop a full-stack SaaS platform with frontend, backend, and database integration."
+},
+  "python developer": {
+  miniProject:
+    "Build a CLI-based automation script using Python.",
+  majorProject:
+    "Develop a web application using Django/Flask with database integration."
+},
+
 "game developer": {
   miniProject:
     "Build a 2D game using Unity with player controls and scoring.",
